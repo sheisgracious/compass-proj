@@ -20,10 +20,12 @@ logger = logging.getLogger(__name__)
 client = MongoClient(MONGODB_URI)
 db = client[MONGODB_DB]
 
+
 def get_weather(city):
     try:
         response = requests.get(
-            f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=imperial&APPID={API_KEY}")
+            f"https://api.openweathermap.org/data/2.5/"
+            "weather?q={city}&units=imperial&APPID={API_KEY}")
         response.raise_for_status()
         return response.json()
     except requests.exceptions.HTTPError as http_err:
@@ -65,7 +67,7 @@ def check_weather_alerts():
         city = alert['city']
         condition = alert['condition']
         value = alert['value']
-        
+
         weather_data = get_weather(city)
         
         if weather_data:
@@ -94,6 +96,7 @@ def main():
         check_weather_alerts()
     else:
         print("No City Found")
+
 
 if __name__ == "__main__":
     main()

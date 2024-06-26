@@ -34,6 +34,7 @@ def get_weather(city):
         logger.error(f"Other error occurred: {err}")
     return None
 
+
 def insert_weather_data(data):
     try:
         weather_data = {
@@ -48,6 +49,7 @@ def insert_weather_data(data):
     except Exception as e:
         logger.error(f"An error occurred while storing data: {e}")
 
+
 def set_weather_alert(city, condition, value):
     try:
         alert = {
@@ -61,6 +63,7 @@ def set_weather_alert(city, condition, value):
     except Exception as e:
         logger.error(f"An error occurred while setting alert: {e}")
 
+
 def check_weather_alerts():
     alerts = db.weather_alerts.find()
     for alert in alerts:
@@ -69,12 +72,15 @@ def check_weather_alerts():
         value = alert['value']
 
         weather_data = get_weather(city)
-        
+
         if weather_data:
             if condition == 'temperature' and weather_data['main']['temp'] >= value:
-                print(f"Alert! The temperature in {city} is {weather_data['main']['temp']}ºF, which is above {value}ºF.")
+                print(f"Alert! The temperature in {city} is "
+                "{weather_data['main']['temp']}ºF, which is above {value}ºF.")
             elif condition == 'humidity' and weather_data['main']['humidity'] >= value:
-                print(f"Alert! The humidity in {city} is {weather_data['main']['humidity']}%, which is above {value}%.")
+                print(f"Alert! The humidity in {city} is "
+                "{weather_data['main']['humidity']}%, which is above {value}%.")
+
 
 def main():
     user_input = input("Enter city: ")

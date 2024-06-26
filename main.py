@@ -27,6 +27,7 @@ def get_weather(city):
             f"https://api.openweathermap.org/data/2.5/"
             f"weather?q={city}&units=imperial&APPID={API_KEY}")
         response.raise_for_status()
+        # print(response.json())
         return response.json()
     except requests.exceptions.HTTPError as http_err:
         logger.error(f"HTTP error occurred: {http_err}")
@@ -44,6 +45,7 @@ def insert_weather_data(data):
             'description': data['weather'][0]['description'],
             'timestamp': datetime.now()
         }
+        # print(weather_data)
         db.weather_data.insert_one(weather_data)
         logger.info(f"Weather data for {data['name']} stored in the database.")
     except Exception as e:
@@ -97,7 +99,8 @@ def main():
         
         # setting a weather alert
         set_weather_alert(user_input, 'temperature', 75)  # setting an alert for temperatures above 75ºF
-        
+        set_weather_alert(user_input, 'humidity', 66) # added alert for humidity > 66
+
         # check and notify about weather alerts
         check_weather_alerts()
     else:

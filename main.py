@@ -25,7 +25,7 @@ def get_weather(city):
     try:
         response = requests.get(
             f"https://api.openweathermap.org/data/2.5/"
-            "weather?q={city}&units=imperial&APPID={API_KEY}")
+            f"weather?q={city}&units=imperial&APPID={API_KEY}")
         response.raise_for_status()
         return response.json()
     except requests.exceptions.HTTPError as http_err:
@@ -76,10 +76,10 @@ def check_weather_alerts():
         if weather_data:
             if condition == 'temperature' and weather_data['main']['temp'] >= value:
                 print(f"Alert! The temperature in {city} is "
-                "{weather_data['main']['temp']}ºF, which is above {value}ºF.")
+                f"{weather_data['main']['temp']}ºF, which is above {value}ºF.")
             elif condition == 'humidity' and weather_data['main']['humidity'] >= value:
                 print(f"Alert! The humidity in {city} is "
-                "{weather_data['main']['humidity']}%, which is above {value}%.")
+                f"{weather_data['main']['humidity']}%, which is above {value}%.")
 
 
 def main():

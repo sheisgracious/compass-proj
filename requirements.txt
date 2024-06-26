@@ -1,0 +1,7 @@
+requests
+pymongo[srv]
+pytest
+flake8
+python-dotenv
+pydantic
+Pillow

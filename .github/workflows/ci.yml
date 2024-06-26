@@ -33,3 +33,16 @@ jobs:
   
       - name: Test with unittest
         run: python3 -m unittest test_cases.py
+        
+      - name: Run tests with coverage
+        run: |
+          python -m coverage run -m unittest test_cases.py
+          python -m coverage report
+          python -m coverage html
+
+      - name: Archive code coverage HTML report
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: htmlcov
+  

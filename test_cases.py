@@ -31,7 +31,7 @@ class TestWeather(unittest.TestCase):
         result = set_weather_alert(city, condition, value)
         self.assertIsNotNone(result)
         self.assertEqual(result, f"Weather alert set for {city}: {condition} {value}")
-        result = set_weather_alert(city, condition="humidity", value) #check for when condition="humidity"
+        result = set_weather_alert(city, condition="humidity", value=50) #check for when condition="humidity"
         self.assertEqual(result, f"Weather alert set for {city}: {condition} {value}")
 
 

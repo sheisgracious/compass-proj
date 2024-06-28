@@ -16,7 +16,7 @@
 #### MongoDB
 
 ## Setup:
-1. Clone the repository
+1. Clone the repository.
 2. Install dependencies from requirements.txt
 3. Create .env file and add your database credentials and API key
 4. Run main.py

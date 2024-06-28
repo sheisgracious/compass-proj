@@ -23,6 +23,10 @@ jobs:
 
   unit-tests:
     runs-on: ubuntu-latest
+    env:
+      API_KEY: ${{ secrets.API_KEY }}
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      MONGODB_DB: ${{ secrets.MONGODB_DB }}
     steps:
       - uses: actions/checkout@v3
   
